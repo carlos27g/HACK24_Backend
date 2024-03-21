@@ -164,13 +164,13 @@ def analyze_text_with_openai(subject_string):
             response = client.chat.completions.create(
                 model="gpt-4",
                 messages=[
-                    {"role": "system", "content": "Du musst einene gegebenen text mit einer gegebenen database von texten verbinden und die ID zurückgeben, vom database text, welcher am besten zum gebene text passt."},
-                    {"role": "user", "content": f"Hier ein lernziel von einer Prüfung. Welche kompetenz wird mit diesem Lernziel überprüft'{lernziel}'?: GIB NUR DIE ID ZURÜCK!! ALSO NUR DIE ZAHL AM ANFANG.{match_kompetenzen}"}
+                    {"role": "system", "content": "Du musst einene gegebenen text mit einer gegebenen database von texten verbinden, vom database text, welcher am besten zum gebene text passt."},
+                    {"role": "user", "content": f"Hier ein lernziel von einer Prüfung. Welche kompetenz wird mit diesem Lernziel überprüft'{lernziel}'?: GIB NUR DEN TEXT ZURÜCK ALSO OHNE DIE ZAHL AM ANFANG.{match_kompetenzen}"}
                 ]
             )
             
             analysis_result = response.choices[0].message.content
-            print(f"{analysis_result}")
+            print(f"{lernziel};\n{analysis_result}\n")
             
         except Exception as e:
             print(f"Error processing OpenAI API request: {e}")
